@@ -13,11 +13,15 @@ async function checkWeather(city) {
         document.querySelector(".error").style.display="none";
          let data = await response.json();
      
-
+        console.log(data);
+        const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+        const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
      document.querySelector(".city").innerHTML =data.name||"Kigali";
      document.querySelector(".temp").innerHTML =`${Math.round(data.main.temp)} °C`;
      document.querySelector(".humidity").innerHTML =`${data.main.humidity}%`;
      document.querySelector(".wind").innerHTML =`${data.wind.speed} km/hr`;
+     document.querySelector(".sun-rise").innerHTML =`${sunrise}`;
+     document.querySelector(".sun-set").innerHTML =`${sunset}`;
 
      if(data.weather[0].main=="Clouds"){
           weatherIcon.src ="images/clouds.png"
